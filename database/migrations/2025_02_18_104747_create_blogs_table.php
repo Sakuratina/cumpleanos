@@ -14,8 +14,9 @@ return new class extends Migration {
             $table->id();
 
             $table->string('title');
-            $table->text('text');
+            $table->text('text')->nullable();
             $table->foreignIdFor(\App\Models\User::class);
+            $table->string('foto')->nullable();
 
 
             $table->timestamps();

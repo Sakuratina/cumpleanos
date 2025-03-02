@@ -19,6 +19,7 @@ class BlogController extends Controller
     {
         $titulo = $request->input('titulo');
         $textoBlog = $request->input('textoBlog');
+        $ruta = $request->file('archivo')->store('archivos', 'public');
 
         $request->validate([
             'titulo' => 'required|min:3',
@@ -32,6 +33,7 @@ class BlogController extends Controller
         $blog = new Blog();
         $blog->title = $titulo;
         $blog->text = $textoBlog;
+        $blog->foto = $ruta;
         $blog->user_id = 1; //no vas a poder sin login, se hace después
         $blog->save();
 

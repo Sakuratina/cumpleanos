@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{route('blog.store')}}" method="POST">
+    <form action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
         {{--
@@ -13,6 +13,16 @@
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <p>Descripción<input type="text" name="textoBlog" placeholder="..."></p>
+
+        <!-- SUBIR ARCHIVOS -->
+        <label for="archivo">Seleccionar archivo:</label>
+        <input type="file" name="archivo" id="archivo" required>
+
+        @error('archivo')
+        <div style="color: red;">{{ $message }}</div>
+        @enderror
+
+
         <p><input type="submit" value="Enviar"></p>
 
 
