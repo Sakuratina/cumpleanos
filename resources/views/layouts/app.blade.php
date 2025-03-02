@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
+    <!-- Para fotos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <!-- Styles / Scripts -->
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,7 +22,7 @@
 <header>
     <div class="encabezado">
         <div class="logo">
-            <img class="logoImagen" src="{{asset('logo.png')}}" alt="logo"/>
+            <img class="logoImagen" src="{{asset('tarta.png')}}" alt="logo"/>
             <span>TuCumpleFeliz.com</span>
         </div>
         <div class="login">
@@ -32,12 +35,14 @@
         <a>FOTOS</a>
         <a>INVITADOS</a>
         <a>REGALOS</a>
-        <a href="{{route('blog.index')}}">BLOG</a>
+        <a class="blog" href="{{route('blog.index')}}">BLOG</a>
     </div>
 </header>
+<main>
 @yield('content')
+</main>
 <footer>
-    <p class="nombre">Cristina León Romero 2025</p>
+
     <div class="footerdiv">
         <div class="privacidad">
             <h2>PRIVACIDAD</h2>
@@ -49,7 +54,9 @@
             <p>Privacidad</p>
             <p>Ayuda</p>
         </div>
+        <p class="nombre">Cristina León Romero 2025</p>
     </div>
+
 </footer>
 
 </body>

@@ -1,9 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
-    margin: 0 10rem;
-}
 
 /*HEADER*/
 .encabezado {
@@ -21,29 +20,60 @@ body {
 }
 
 .logo span {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 500; /* 100 (fino) a 900 (grueso) */
+    color: #01527D;
     position: relative;
     top: 3rem;
     font-size: 3rem;
 }
 
 .login {
-
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 500; /* 100 (fino) a 900 (grueso) */
     padding: 20px;
     display: flex;
     justify-content: flex-end;
     left: 2em;
 }
-.login a{
+
+.login a {
     padding-right: 2em;
 }
+
 .enlaces {
+    background-image: url("/public/burbujas.png");
+    background-size: 30%;
+    background-position-y: -70px;
+    background-position-x: -220px;
+    background-repeat: no-repeat;
+    padding: 2rem;
     display: flex;
     justify-content: space-evenly;
-    background-color: #C3EEF5;
+    background-color: #8AB9C7;
 }
 
 .enlaces a {
+    padding: 0 1em 0 1em;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 700; /* 100 (fino) a 900 (grueso) */
     font-size: 1.2em;
+
+
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.3s ease, text-shadow;
+    background: linear-gradient(0deg, #F48C89, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-radius: 7px;
+
+}
+
+.enlaces a:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Difumina el borde */
+
+
 }
 
 /*MAIN*/
@@ -51,7 +81,9 @@ h1 {
     text-align: center;
     font-size: 2em;
 }
-
+main{
+    margin: 0 20rem;
+}
 main.inicio {
     background-image: url("/public/fondo_cumple.jpeg");
     min-height: 40rem;
@@ -60,30 +92,81 @@ main.inicio {
     background-size: contain;
 }
 
+.contenidoTitulo {
+    font-size: 1.5em;
+    color: #F48C89;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 700; /* 100 (fino) a 900 (grueso) */
+    display: flex;
+    justify-content: center;
+}
+
+.contenidoBlog {
+
+    border-radius: 7px;
+    background-color: #8AB9C7;
+margin-bottom: 2em;
+    border: solid #F48C89 2px;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 600; /* 100 (fino) a 900 (grueso) */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea el primer elemento arriba */
+    position: relative;
+    flex-direction: column;
+}
+
+.textoBlog {
+    font-size: 1em;
+    width: 100%;
+    align-self: flex-start; /* Asegura que esté arriba */
+    color: white;
+
+    text-align: center;
+}
+
+.fechaBlog{
+    font-size: 1em;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 500; /* 100 (fino) a 900 (grueso) */
+    color: white;
+    align-self: flex-end; /* Lo lleva abajo */
+    margin-left: auto; /* Lo empuja hacia la derecha */
+}
+
 /*FOOTER*/
 footer {
 
+    background-image: url("/public/burbujas.png");
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position-y: 10px;
+    background-position: right;
     bottom: 0;
     left: 0;
-    width: 100%;
-    background-color: #C3EEF5;
+    background-color: #8AB9C7;
     color: white;
-    text-align: center;
+
     padding: 10px;
 }
 
 .nombre {
-    font-size: 1.5em;
-}
-.footerdiv{
-    display: flex;
-    flex-direction: row;
-}
-footer div {
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: flex-end;
+    font-size: 1.5em;
+    margin-left: auto;
+}
+
+.footerdiv {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 500; /* 100 (fino) a 900 (grueso) */
+    display: flex;
+}
+
+footer div {
+    padding-right: 5rem;
     left: 2em;
+    text-align: center;
 }
 
