@@ -24,26 +24,18 @@ class BlogController extends Controller
         $request->validate([
             'titulo' => 'required|min:3',
         ]);
-
-        //Este guarda
-        /*
-         * Tu misión es pillar los datos de la request y sustituirlos por los que tenemos a escritos a mano
-         */
-
         $blog = new Blog();
         $blog->title = $titulo;
         $blog->text = $textoBlog;
         $blog->foto = $ruta;
-        $blog->user_id = 1; //no vas a poder sin login, se hace después
+        $blog->user_id = auth()->id();
         $blog->save();
 
         return redirect()->route('blog.index');
-
-        //extra: haz una redireccion
     }
 
     public function index()
     {
-        return view('blog.index', ['blogs' => Blog::all()]);
+        return view('blog.index', ['blogs' => Blog::with('user')->paginate(3)]);//precargar la relación user para to lo que venga
     }
 }

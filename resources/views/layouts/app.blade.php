@@ -26,15 +26,18 @@
             <span>TuCumpleFeliz.com</span>
         </div>
         <div class="login">
-            <a>Mí cuenta</a>
-            <a>¡Registrate!</a>
+            <a href="{{route('login')}}">Mí cuenta</a>
+
+            @guest()
+            <a href="{{route('register')}}">¡Registrate!</a>
+            @endguest
         </div>
     </div>
     <div class="enlaces">
-        <a>INICIO</a>
-        <a>FOTOS</a>
-        <a>INVITADOS</a>
-        <a>REGALOS</a>
+        <a href="">INICIO</a>
+        <a href="">FOTOS</a>
+        <a href="">INVITADOS</a>
+        <a href="">REGALOS</a>
         <a class="blog" href="{{route('blog.index')}}">BLOG</a>
     </div>
 </header>
