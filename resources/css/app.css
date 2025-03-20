@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /*HEADER*/
 .encabezado {
     display: grid;
@@ -51,8 +52,12 @@
     display: flex;
     justify-content: space-evenly;
     background-color: #8AB9C7;
-}
 
+    position: sticky;
+    top: 0; /* 🔥 Esto es necesario para que funcione */
+    width: 100%;
+    z-index: 1000; /* 🔥 Asegura que quede por encima de otros elementos */
+}
 .enlaces a {
     padding: 0 1em 0 1em;
     font-family: 'Gloria Hallelujah', cursive;
@@ -93,6 +98,7 @@ main.inicio {
 }
 
 .contenidoTitulo {
+    padding-top: 40px;
     font-size: 1.5em;
     color: #F48C89;
     font-family: 'Gloria Hallelujah', cursive;
@@ -104,38 +110,133 @@ main.inicio {
 .contenidoBlog {
 
     border-radius: 7px;
-    background-color: #8AB9C7;
+    background-color: white;
 margin-bottom: 2em;
-    border: solid #F48C89 2px;
+    border: solid #01527D 1px;
     font-family: 'Gloria Hallelujah', cursive;
     font-weight: 600; /* 100 (fino) a 900 (grueso) */
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinea el primer elemento arriba */
-    position: relative;
-    flex-direction: column;
+    flex-direction: row;
 }
 .fotos{
-    display: flex;
+width: 80%;
    align-self: center;
 }
 .textoBlog {
-    font-size: 1em;
-    width: 100%;
-    align-self: flex-start; /* Asegura que esté arriba */
-    color: white;
 
+    padding-top: 10px;
+    font-size: 1em;
+    align-self: flex-start; /* Asegura que esté arriba */
+    color: #01527D;
     text-align: center;
+    flex-grow: 1; /* Ocupa todo el espacio disponible arriba */
 }
 
 .fechaBlog{
     font-size: 1em;
     font-family: 'Gloria Hallelujah', cursive;
     font-weight: 500; /* 100 (fino) a 900 (grueso) */
-    color: white;
-    align-self: flex-end; /* Lo lleva abajo */
-    margin-left: auto; /* Lo empuja hacia la derecha */
+    color: #01527D;
 }
+
+.pieFoto{
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;/* Espacio entre autor y fecha */
+    padding-bottom: 5px;
+}
+
+.contenidoLateral{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+}
+.borrar{
+    width: 40px;
+}
+.editar{
+    width: 40px;
+}
+.botones{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+}
+.crearEntrada {
+
+  margin-bottom: 5px;
+    padding: 8px 10px;
+    background: #8AB9C7;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.crearEntrada:hover {
+    background: #2d3748;
+    box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
+}
+
+
+/*FORMULARIO*/
+.formCreate {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.botonCreate, .submitCreate{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.botonCreate, textarea, .submitCreate {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submitCreate {
+    width: 100%;
+    padding: 10px;
+    background: #ccc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.submitCreate:hover {
+    background: #8AB9C7;
+    box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
+}
+
+
+
+
 
 /*FOOTER*/
 footer {

@@ -1,14 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <form id="miFormulario" class="formCreate" action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
+    <form id="miFormulario" class="formCreate" action="{{route('blog.update',$blog)}}" method="POST"
+          enctype="multipart/form-data">
         @csrf
+        @method('PATCH')
 
         {{--
          formulario para escribir entradas de blog
          Esto se recibe en la funcion store cuando pulsemos el submit
          --}}
-        <p>Título<input class="botonCreate" type="text" name="titulo" value="{{ old('titulo') }}" placeholder="Título">
+
+        <p>Título<input class="botonCreate" type="text" name="titulo" value="{{ old('titulo',$blog->title) }}"
+                        placeholder="Título">
         </p>
         @error('titulo')
         <div style="color: red;">{{ $message }}</div>
@@ -17,12 +21,10 @@
 
 
         <!-- Create the editor container -->
-        <div id="editor">
-
-        </div>
+        <div id="editor">{!! $blog->text !!}</div>
 
         <!-- Campo oculto para enviar el contenido -->
-        <input type="hidden" name="textoBlog" id="contenido">
+        <input type="hidden" name="textoBlog" id="contenido" value="{!! $blog->text !!}">
 
         <!-- SUBIR ARCHIVOS -->
         <label for="archivo">Seleccionar archivo:</label>

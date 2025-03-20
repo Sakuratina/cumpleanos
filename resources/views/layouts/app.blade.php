@@ -6,6 +6,13 @@
 
     <title>Laravel</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- QUILL -->
+
+    <!-- Include stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
@@ -15,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <!-- Styles / Scripts -->
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
@@ -29,12 +36,12 @@
             <a href="{{route('login')}}">Mí cuenta</a>
 
             @guest()
-            <a href="{{route('register')}}">¡Registrate!</a>
+                <a href="{{route('register')}}">¡Registrate!</a>
             @endguest
         </div>
     </div>
     <div class="enlaces">
-        <a href="">INICIO</a>
+        <a href="/">INICIO</a>
         <a href="">FOTOS</a>
         <a href="">INVITADOS</a>
         <a href="">REGALOS</a>
@@ -42,7 +49,7 @@
     </div>
 </header>
 <main>
-@yield('content')
+    @yield('content')
 </main>
 <footer>
 
@@ -61,6 +68,7 @@
     </div>
 
 </footer>
+<!-- Include the Quill library -->
 
 </body>
 </html>

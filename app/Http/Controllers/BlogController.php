@@ -34,6 +34,30 @@ class BlogController extends Controller
         return redirect()->route('blog.index');
     }
 
+    public function destroy(Blog $blog)
+    {
+        $blog->delete();
+        return back()->withInput();
+    }
+
+    public function edit(Blog $blog)
+    {
+
+        return view('blog.edit', compact('blog'));
+    }
+
+    public function update(BlogStoreRequest $request, Blog $blog)
+    {
+
+        $blog->title = $request->input('titulo', $blog->title);
+        $blog->text = $request->input('textoBlog', $blog->text);
+
+        if ($request->hasFile('archivo'))
+            $blog->foto = $request->file('archivo')->store('archivos', 'public');
+        $blog->save();
+        return redirect()->route('blog.index');
+    }
+
     public function index()
     {
         return view('blog.index', ['blogs' => Blog::with('user')->paginate(3)]);//precargar la relación user para to lo que venga
