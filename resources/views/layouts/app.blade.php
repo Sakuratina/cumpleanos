@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- photoswipe -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css">
+
     <!-- QUILL -->
 
     <!-- Include stylesheet -->
@@ -18,6 +21,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
     <!-- Para fotos -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <!-- Styles / Scripts -->
@@ -42,7 +46,7 @@
     </div>
     <div class="enlaces">
         <a href="/">INICIO</a>
-        <a href="">FOTOS</a>
+        <a href="{{route('galeria')}}">FOTOS</a>
         <a href="">INVITADOS</a>
         <a href="">REGALOS</a>
         <a class="blog" href="{{route('blog.index')}}">BLOG</a>

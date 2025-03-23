@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GalleryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,7 +20,7 @@ Route::middleware('auth')->group(function () {
 });
 //Para fotos
 use App\Http\Controllers\ImageController;
-Route::post('/upload-image', [ImageController::class, 'store'])->name('upload.image');
+
 //***********
 
 Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
@@ -30,6 +31,8 @@ Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 Route::patch('/blog/{blog}', [BlogController::class, 'update'])->name('blog.update');
 Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
-
+Route::post('/upload', [GalleryController::class, 'upload'])->name('upload');
+Route::get('/fotos', [GalleryController::class, 'showGallery'])->name('galeria');
+Route::delete('/fotos', [GalleryController::class, 'destroy'])->name('galeria.destroy');
 
 require __DIR__.'/auth.php';

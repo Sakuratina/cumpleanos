@@ -62,4 +62,5 @@ class BlogController extends Controller
     {
         return view('blog.index', ['blogs' => Blog::with('user')->paginate(3)]);//precargar la relación user para to lo que venga
     }
+
 }
