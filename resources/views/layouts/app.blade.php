@@ -14,7 +14,7 @@
     <!-- QUILL -->
 
     <!-- Include stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <!-- Styles / Scripts -->
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -47,8 +48,8 @@
     <div class="enlaces">
         <a href="/">INICIO</a>
         <a href="{{route('galeria')}}">FOTOS</a>
-        <a href="">INVITADOS</a>
-        <a href="">REGALOS</a>
+        <a href="{{route('invitados.index')}}">INVITADOS</a>
+        <a href="{{route('regalo.index')}}">REGALOS</a>
         <a class="blog" href="{{route('blog.index')}}">BLOG</a>
     </div>
 </header>
@@ -72,7 +73,6 @@
     </div>
     <p class="nombre">Cristina León Romero 2025</p>
 </footer>
-<!-- Include the Quill library -->
 
 </body>
 </html>

@@ -21,7 +21,7 @@
 
 
         <!-- Create the editor container -->
-        <div id="editor">{!! $blog->text !!}</div>
+        <div class="quill-editor">{!! $blog->text !!}</div>
 
         <!-- Campo oculto para enviar el contenido -->
         <input type="hidden" name="textoBlog" id="contenido" value="{!! $blog->text !!}">
@@ -35,20 +35,12 @@
         @enderror
 
         <p><input type="submit" value="Enviar" class="submitCreate"></p>
-
-
     </form>
 
-    <!-- Initialize Quill editor -->
-
-    <!-- Include the Quill library -->
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-    <!-- Initialize Quill editor -->
     <script>
-        const quill = new Quill('#editor', {
+        const quill = new Quill('.quill-editor', {
             theme: 'snow'
         });
-
         // Antes de enviar el formulario, copiar el contenido a un input oculto
         document.getElementById('miFormulario').onsubmit = function () {
             document.getElementById('contenido').value = quill.root.innerHTML;

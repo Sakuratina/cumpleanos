@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\InvitadoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GalleryController;
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 //Para fotos
 use App\Http\Controllers\ImageController;
 
@@ -35,4 +37,11 @@ Route::post('/upload', [GalleryController::class, 'upload'])->name('upload');
 Route::get('/fotos', [GalleryController::class, 'showGallery'])->name('galeria');
 Route::delete('/fotos', [GalleryController::class, 'destroy'])->name('galeria.destroy');
 
-require __DIR__.'/auth.php';
+Route::resource('regalo', \App\Http\Controllers\RegaloController::class)->except('show');
+Route::post('/regalo/regalar/{regalo}', [\App\Http\Controllers\RegaloController::class, 'regalar'])->name("regalo.regalar");
+
+Route::get('/invitados', [InvitadoController::class, 'index'])->name('invitados.index');
+Route::post('/invitados/apuntarse', [InvitadoController::class, 'apuntarse'])->name('invitados.apuntarse');
+Route::post('/invitados/desapuntarse', [InvitadoController::class, 'desapuntarse'])->name('invitados.desapuntarse');
+
+require __DIR__ . '/auth.php';

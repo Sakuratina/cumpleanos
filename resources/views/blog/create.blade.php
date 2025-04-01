@@ -28,8 +28,6 @@
         @enderror
 
         <p><input type="submit" value="Enviar" class="submitCreate"></p>
-
-
     </form>
 
     <script>

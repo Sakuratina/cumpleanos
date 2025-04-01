@@ -1,90 +1,92 @@
 @extends('layouts.app')
 @section('content')
+<div class="galeria">
+    <h2 class="subirImagenes">Subir imagenes</h2>
+    @auth
+        <!-- Formulario Dropzone -->
+        <form action="{{ route('upload') }}" class="dropzone" id="galleryDropzone">
+            @csrf
+        </form>
 
+        <!-- Botones de control -->
+        <div id="upload-box" class="invisible" style="margin-top: 10px;">
+            <button class="aceptarBorrar" id="acceptBtn" disabled
+                    style=" color: black; padding: 10px; border: none; cursor: pointer;">
+                ✅ Aceptar Subida
+            </button>
+            <button class="aceptarBorrar"  id="clearBtn" style=" color: black; padding: 10px; border: none; cursor: pointer;">
+                ❌ Borrar Imágenes
+            </button>
+        </div>
+    @endauth
+    <!-- Vista previa de imágenes antes de la subida -->
+    <div id="preview" class="invisible">
 
-<h2>Subir Imágenes con Dropzone.js</h2>
-@auth
-<!-- Formulario Dropzone -->
-<form action="{{ route('upload') }}" class="dropzone" id="galleryDropzone">
-    @csrf
-</form>
+        <h3>Imágenes a Subir:</h3>
+        <div id="image-gallery"></div>
 
-<!-- Botones de control -->
-<div style="margin-top: 10px;">
-    <button id="acceptBtn" disabled
-            style=" color: black; padding: 10px; border: none; cursor: pointer;">
-        ✅ Aceptar Subida
-    </button>
-    <button id="clearBtn" style=" color: black; padding: 10px; border: none; cursor: pointer;">
-        ❌ Borrar Imágenes
-    </button>
-</div>
-@endauth
-<!-- Vista previa de imágenes antes de la subida -->
-<div id="preview">
+    </div>
+    <script>
+        Dropzone.options.galleryDropzone = {
+            paramName: "file",
+            maxFilesize: 2, // Tamaño máximo en MB
+            acceptedFiles: "image/*",
+            autoProcessQueue: false, // No subir automáticamente
+            dictDefaultMessage: "Arrastra y suelta imágenes aquí o haz clic para subir",
+            init: function () {
+                let myDropzone = this;
 
-    <h3>Imágenes a Subir:</h3>
-    <div id="image-gallery"></div>
+                // Cuando se agrega un archivo
+                this.on("addedfile", function (file) {
+                    //Mostrar botones
+                    document.getElementById("upload-box").classList.remove('invisible');
+                    document.getElementById("preview").classList.remove('invisible');
+                    // Habilitar botón Aceptar
+                    document.getElementById("acceptBtn").disabled = false;
 
-</div>
-<script>
-    Dropzone.options.galleryDropzone = {
-        paramName: "file",
-        maxFilesize: 2, // Tamaño máximo en MB
-        acceptedFiles: "image/*",
-        autoProcessQueue: false, // No subir automáticamente
-        dictDefaultMessage: "Arrastra y suelta imágenes aquí o haz clic para subir",
-        init: function () {
-            let myDropzone = this;
+                    let img = document.createElement("img");
+                    img.src = URL.createObjectURL(file);
+                    img.style.width = "100px";
+                    img.style.margin = "10px";
+                    img.setAttribute("data-file", file.name);
+                    document.getElementById("image-gallery").appendChild(img);
+                });
 
-            // Cuando se agrega un archivo
-            this.on("addedfile", function (file) {
-                document.getElementById("acceptBtn").disabled = false; // Habilitar botón Aceptar
+                // Subir archivos al hacer clic en "Aceptar"
+                document.getElementById("acceptBtn").addEventListener("click", function () {
+                    myDropzone.processQueue();
+                });
 
-                let img = document.createElement("img");
-                img.src = URL.createObjectURL(file);
-                img.style.width = "100px";
-                img.style.margin = "10px";
-                img.setAttribute("data-file", file.name);
-                document.getElementById("image-gallery").appendChild(img);
-            });
+                // Borrar imágenes antes de la subida
+                document.getElementById("clearBtn").addEventListener("click", function () {
+                    myDropzone.removeAllFiles(true);
+                    document.getElementById("image-gallery").innerHTML = "";
+                    document.getElementById("acceptBtn").disabled = true;
+                });
 
-            // Subir archivos al hacer clic en "Aceptar"
-            document.getElementById("acceptBtn").addEventListener("click", function () {
-                myDropzone.processQueue();
-            });
+                // Eliminar previsualización cuando se borra un archivo de Dropzone
+                this.on("removedfile", function (file) {
+                    let images = document.querySelectorAll("#image-gallery img");
+                    images.forEach(img => {
+                        if (img.getAttribute("data-file") === file.name) {
+                            img.remove();
+                        }
+                    });
 
-            // Borrar imágenes antes de la subida
-            document.getElementById("clearBtn").addEventListener("click", function () {
-                myDropzone.removeAllFiles(true);
-                document.getElementById("image-gallery").innerHTML = "";
-                document.getElementById("acceptBtn").disabled = true;
-            });
-
-            // Eliminar previsualización cuando se borra un archivo de Dropzone
-            this.on("removedfile", function (file) {
-                let images = document.querySelectorAll("#image-gallery img");
-                images.forEach(img => {
-                    if (img.getAttribute("data-file") === file.name) {
-                        img.remove();
+                    if (this.files.length === 0) {
+                        document.getElementById("acceptBtn").disabled = true;
                     }
                 });
 
-                if (this.files.length === 0) {
-                    document.getElementById("acceptBtn").disabled = true;
-                }
-            });
+                // Mostrar imágenes subidas en la galería después de la subida
+                this.on("success", function (file, response) {
+                    console.log("Imagen subida:", response.path);
+                });
+            }
+        };
+    </script>
 
-            // Mostrar imágenes subidas en la galería después de la subida
-            this.on("success", function (file, response) {
-                console.log("Imagen subida:", response.path);
-            });
-        }
-    };
-</script>
-
-<!-- Imágenes ya subidas -->
-<h3>Imágenes Subidas:</h3>
+    <!-- Imágenes ya subidas -->
 
     <div class="pswp-gallery gallery-container" id="my-gallery">
         @foreach ($images as $image)
