@@ -68,9 +68,9 @@
             <p>Privacidad</p>
             <p>Ayuda</p>
         </div>
-        <p class="nombre">Cristina León Romero 2025</p>
-    </div>
 
+    </div>
+    <p class="nombre">Cristina León Romero 2025</p>
 </footer>
 <!-- Include the Quill library -->
 

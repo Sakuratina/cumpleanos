@@ -86,16 +86,16 @@
 <!-- Imágenes ya subidas -->
 <h3>Imágenes Subidas:</h3>
 
-<div class="pswp-gallery" id="my-gallery">
-    @foreach ($images as $image)
-    <a href="{{ asset('storage/' . $image) }}"
-       data-pswp-width="2500"
-       data-pswp-height="1667"
-       target="_blank">
-        <img src="{{ asset('storage/' . $image) }}" width="200px" alt="imagen subida" />
-    </a>
-    @endforeach
-</div>
+    <div class="pswp-gallery gallery-container" id="my-gallery">
+        @foreach ($images as $image)
+            <a href="{{ asset('storage/' . $image) }}"
+               data-pswp-width="2500"
+               data-pswp-height="1667"
+               target="_blank">
+                <img src="{{ asset('storage/' . $image) }}" width="200px" alt="imagen subida"/>
+            </a>
+        @endforeach
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -125,5 +125,5 @@
             });
         });
     </script>
-
+</div>
 @endsection

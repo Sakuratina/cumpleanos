@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <form id="miFormulario" class="formCreate" action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
+    <form id="miFormulario" class="formCreate" action="{{route('blog.store')}}" method="POST"
+          enctype="multipart/form-data">
         @csrf
-
         {{--
          formulario para escribir entradas de blog
          Esto se recibe en la funcion store cuando pulsemos el submit
@@ -14,13 +14,8 @@
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <p>Descripción</p>
-
-
         <!-- Create the editor container -->
-        <div id="editor">
-
-        </div>
-
+        <div class="quill-editor"></div>
         <!-- Campo oculto para enviar el contenido -->
         <input type="hidden" name="textoBlog" id="contenido">
 
@@ -37,16 +32,10 @@
 
     </form>
 
-    <!-- Initialize Quill editor -->
-
-    <!-- Include the Quill library -->
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-    <!-- Initialize Quill editor -->
     <script>
-        const quill = new Quill('#editor', {
+        const quill = new Quill('.quill-editor', {
             theme: 'snow'
         });
-
         // Antes de enviar el formulario, copiar el contenido a un input oculto
         document.getElementById('miFormulario').onsubmit = function () {
             document.getElementById('contenido').value = quill.root.innerHTML;
