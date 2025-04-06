@@ -38,9 +38,16 @@
             <a href="/">TuCumpleFeliz.com</a>
         </div>
         <div class="login">
-            <a href="{{route('login')}}">Mí cuenta</a>
+            @auth()
+                <!-- <a href="{{route('login')}}">Mí cuenta</a> -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Desconectar</button>
+                </form>
 
+            @endauth
             @guest()
+                <a href="{{route('login')}}">¡Inicia!</a>
                 <a href="{{route('register')}}">¡Registrate!</a>
             @endguest
         </div>
