@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        @if($asiste)
-            <form method="post" action="{{ route('invitados.desapuntarse') }}">
-                @csrf
-                <button type="submit">No asistir</button>
-            </form>
-        @else
-            <form method="post" action="{{ route('invitados.apuntarse') }}">
-                @csrf
-                <button type="submit">Asistir</button>
-            </form>
-        @endif
+    <div class="invitados">
+        @auth
+            @if($asiste)
+                <form method="post" action="{{ route('invitados.desapuntarse') }}">
+                    @csrf
+                    <button type="submit">No asistir</button>
+                </form>
+            @else
+                <form method="post" action="{{ route('invitados.apuntarse') }}">
+                    @csrf
+                    <button type="submit">Asistir</button>
+                </form>
+            @endif
+        @endauth
 
 
         <ul>

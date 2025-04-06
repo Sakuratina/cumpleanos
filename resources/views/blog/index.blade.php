@@ -2,14 +2,15 @@
 
 @section('content')
     <div class="blogestilo">
+        @auth
+            <a class="crearEntrada" href="{{route('blog.create')}}">Nueva entrada</a>
+        @endauth
         @foreach($blogs as $blog)
             {{--aquí insertamos lel título del blog--}}
 
             <div class="botones">
 
-                @auth
-                    <a class="crearEntrada" href="{{route('blog.create')}}">Nueva entrada</a>
-                @endauth
+
                 <form method="post" action="{{route('blog.destroy', $blog)}}">
                     @csrf
                     @method('delete')

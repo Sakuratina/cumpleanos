@@ -25,6 +25,10 @@ class RegaloController extends Controller
         $regalo->fill($request->validated());
         $regalo->user()->associate($request->user());
         $regalo->lista_regalo_id = 1; //TODO: Usar una lista de verdad o no usar listas
+
+        if ($request->hasFile('foto'))
+            $regalo->foto = $request->file('foto')->store('fotos','public');
+
         $regalo->save();
 
         return redirect()->route('regalo.index')->withInput();
@@ -45,6 +49,11 @@ class RegaloController extends Controller
     public function update(Request $request, Regalo $regalo)
     {
         $regalo->update($request->all());
+
+        if ($request->hasFile('foto'))
+            $regalo->foto = $request->file('foto')->store('fotos','public');
+
+        $regalo->save();
         return redirect()->route('regalo.index')->withInput();
     }
 

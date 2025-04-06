@@ -7,15 +7,15 @@
 
 @section('content')
     @if($isEdit)
-        <form action="{{route('regalo.destroy')}}" method="post">
+        <form class="formBorrar" action="{{route('regalo.destroy')}}" method="post">
             @csrf
             @method('DELETE')
             <button type="submit">Borrar</button>
         </form>
     @endif
+<div class="divFotoRegaloAñadir">
 
-
-    <form action="{{ $isEdit ? route('regalo.update', $regalo->id) : route('regalo.store') }}" method="POST"
+    <form class="formInsertarRegalo" action="{{ $isEdit ? route('regalo.update', $regalo->id) : route('regalo.store') }}" method="POST"
           enctype="multipart/form-data">
         @csrf
         @if($isEdit)
@@ -42,4 +42,8 @@
 
         <button type="submit">{{ $isEdit ? 'Actualizar' : 'Crear' }}</button>
     </form>
+<div class="h2RegaloDiv">
+    <h2 class="h2Regalo">¡Agrega un enlace y una foto para mejorar la calidad de la lista!</h2>
+</div>
+    </div>
 @endsection

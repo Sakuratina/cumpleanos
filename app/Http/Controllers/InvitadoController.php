@@ -11,7 +11,10 @@ class InvitadoController extends Controller
     {
         $invitados = Invitado::with('user')->paginate(100);
 
-        $asiste = Invitado::where('user_id', auth()->id())->exists();
+        if (auth()->guest()) {
+            $asiste = false;
+        } else
+            $asiste = Invitado::where('user_id', auth()->id())->exists();
 
         return view('invitados.index', ['invitados' => $invitados, 'asiste' => $asiste]);
     }

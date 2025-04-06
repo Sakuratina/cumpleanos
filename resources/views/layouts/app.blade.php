@@ -35,7 +35,7 @@
     <div class="encabezado">
         <div class="logo">
             <img class="logoImagen" src="{{asset('tarta.png')}}" alt="logo"/>
-            <span>TuCumpleFeliz.com</span>
+            <a href="/">TuCumpleFeliz.com</a>
         </div>
         <div class="login">
             <a href="{{route('login')}}">Mí cuenta</a>
